@@ -7,5 +7,26 @@
   </head>
   <body>
     <h1>Things I need to Do!</h1>
+
+    <table>
+      <tr>
+        <td>name</td>
+        <td>Done</td>
+      </tr>
+      {% for item in items %}
+        <tr>
+          {% if item.done %}
+            <del><td>{{item.name}}</td></del>
+          {% else %}
+            <td>{{item.name}}</td>
+          {% endif %}
+          <td>{{item.done}}</td>
+        </tr>
+        {% empty %}
+        <tr><td>You have nothing to do!</td></tr>
+      {% endfor %}
+    </table>
+
+
   </body>
 </html>

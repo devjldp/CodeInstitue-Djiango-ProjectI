@@ -27,14 +27,13 @@ from todo.views import get_todo_list
 # Definiendo las URL del proyecto
 urlpatterns = [
     # Syntax path: path(route, view, kwargs=None, name=None)
-    
+
     # Configurando la URL para acceder al panel de administración
     path('admin/', admin.site.urls),
-    
+
     # Configurando la URL 'hello/' para activar la función 'say_hello'
     # y asignándole el nombre 'hello' para referenciarla más fácilmente
     path('hello/', say_hello, name='hello'),
-    
-    path('todo/', get_todo_list, name = 'get_todo_list' )
-]
 
+    path('todo/', get_todo_list, name='get_todo_list')
+]
