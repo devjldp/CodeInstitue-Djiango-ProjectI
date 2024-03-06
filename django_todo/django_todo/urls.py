@@ -24,6 +24,8 @@ from todo.views import say_hello
 
 from todo.views import get_todo_list
 
+from todo.views import add_item
+
 # Definiendo las URL del proyecto
 urlpatterns = [
     # Syntax path: path(route, view, kwargs=None, name=None)
@@ -33,7 +35,12 @@ urlpatterns = [
 
     # Configurando la URL 'hello/' para activar la función 'say_hello'
     # y asignándole el nombre 'hello' para referenciarla más fácilmente
-    path('hello/', say_hello, name='hello'),
+    path('hello/', say_hello, name = 'hello'),
 
-    path('todo/', get_todo_list, name='get_todo_list')
+    # Esta es la homepage
+    path('', get_todo_list, name = 'get_todo_list'),
+    
+    # Esta es la url para add un nuevo item
+    path('add', add_item, name = 'add_item')
+    
 ]

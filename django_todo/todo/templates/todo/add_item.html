@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Add a new Item</h1>
+    <form action="add" method="POST">
+      {% csrf_token %}
+
+      <div>
+        <p>
+          <label for="id_name">Name: </label>
+          <input type="text" name="item_name" id="id_name" />
+        </p>
+      </div>
+      <div>
+        <p>
+          <label for="id_done">Name: </label>
+          <input type="checkbox" name="done" id="id_done" />
+        </p>
+      </div>
+      <div>
+        <p>
+          <button type="submit">Add Item</button>
+        </p>
+      </div>
+    </form>
+  </body>
+</html>
