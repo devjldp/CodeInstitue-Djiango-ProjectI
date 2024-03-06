@@ -1,7 +1,7 @@
 # Importa la función render desde el módulo shortcuts en el paquete Django del framework Django para Python.
 # La función render se utiliza comúnmente en las vistas de Django para renderizar plantillas HTML y devolver la respuesta al navegador del cliente.
 # Proporciona una manera conveniente de generar una respuesta HTTP con contenido HTML basado en una plantilla y datos específicos del contexto.
-from django.shortcuts import render, HttpResponse, redirect
+from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 
 # Necesito importar Item para poder usarlos
 from .models import Item
@@ -9,11 +9,15 @@ from .models import Item
 from .forms import ItemForm
 
 # Definición de una función de vista llamada 'say_hello' que toma el parámetro 'request'
+
+
 def say_hello(request):
     # Devuelve una respuesta HTTP con el mensaje "Hello!"
     return HttpResponse("Hello!")
 
 # Definición de una función de vista llamada 'get_todo_list' que toma el parámetro 'request'
+
+
 def get_todo_list(request):
     # Obtiene todos los items de la base de datos
     items = Item.objects.all()
@@ -27,6 +31,8 @@ def get_todo_list(request):
     return render(request, 'todo/todo_list.html', context)
 
 # Definición de una función de vista llamada 'add_item' que toma el parámetro 'request'
+
+
 def add_item(request):
     # Verifica si la solicitud es de tipo POST
     if request.method == 'POST':
@@ -48,3 +54,18 @@ def add_item(request):
     # Renderiza la plantilla 'add_item.html' con el formulario como contexto
     return render(request, 'todo/add_item.html', context)
 
+
+def edit_item(request, item_id):
+    item = get_object_or_404(Item, id=item_id)
+
+    if request.method == 'POST':
+        form = ItemForm(request.POST, instance=item)
+        if form.is_valid():
+            form.save()
+            return redirect('get_todo_list')
+    form = ItemForm(instance=item)
+
+    context = {
+        'form': form
+    }
+    return render(request, 'todo/edit_item.html', context)
