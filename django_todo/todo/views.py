@@ -9,11 +9,9 @@ from .models import Item
 from .forms import ItemForm
 
 # Definición de una función de vista llamada 'say_hello' que toma el parámetro 'request'
-
-
-def say_hello(request):
+# def say_hello(request):
     # Devuelve una respuesta HTTP con el mensaje "Hello!"
-    return HttpResponse("Hello!")
+    # return HttpResponse("Hello!")
 
 # Definición de una función de vista llamada 'get_todo_list' que toma el parámetro 'request'
 
