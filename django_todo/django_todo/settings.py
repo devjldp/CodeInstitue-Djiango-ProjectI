@@ -12,6 +12,22 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 
+# Importa el módulo os, que proporciona una forma de interactuar con el sistema operativo.
+import os  
+
+# Importa el paquete dj_database_url, que se utiliza para analizar URLs de bases de datos 
+# y convertirlas en configuraciones que Django puede entender.
+import dj_database_url  
+
+# Comprueba si existe un archivo llamado 'env.py' en el directorio actual.
+# os.path.isfile() devuelve True si el archivo especificado existe.
+if os.path.isfile('env.py'):
+    # Si 'env.py' existe, importa el módulo env para cargar las variables de entorno definidas en él.
+    import env  
+
+
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -75,10 +91,18 @@ WSGI_APPLICATION = 'django_todo.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    # La configuración por defecto, comentada, para usar una base de datos SQLite.
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',  # El backend de la base de datos que Django usará (SQLite en este caso).
+    #     'NAME': BASE_DIR / 'db.sqlite3',  # La ubicación del archivo de la base de datos SQLite.
+    # }
+    
+    # Configuración de la base de datos usando dj_database_url 
+    # y una URL de base de datos almacenada en una variable de entorno.
+    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))  
+    # dj_database_url.parse() convierte la URL de la base de datos en un 
+    # diccionario de configuración que Django puede entender.
+    # os.environ.get('DATABASE_URL') obtiene la URL de la base de datos desde las variables de entorno.
 }
 
 

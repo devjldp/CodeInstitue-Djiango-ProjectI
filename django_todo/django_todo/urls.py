@@ -19,8 +19,8 @@ from django.contrib import admin
 # Importando la función 'path' del paquete 'django.urls'
 from django.urls import path
 
-# Importando la función 'say_hello' desde el módulo 'views' en el paquete 'todo'
-from todo.views import say_hello
+# # Importando la función 'say_hello' desde el módulo 'views' en el paquete 'todo'
+# from todo.views import say_hello
 
 from todo import views
 
@@ -34,7 +34,7 @@ urlpatterns = [
 
     # Configurando la URL 'hello/' para activar la función 'say_hello'
     # y asignándole el nombre 'hello' para referenciarla más fácilmente
-    path('hello/', say_hello, name='hello'),
+    # path('hello/', say_hello, name='hello'),
 
     # Esta es la homepage
     path('', views.get_todo_list, name='get_todo_list'),
